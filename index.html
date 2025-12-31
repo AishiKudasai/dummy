@@ -1,54 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR Floating Text & Images</title>
-  <style>
-    body, html {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-    }
-    #infoCard {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      padding: 10px 20px;
-      border-radius: 8px;
-      display: none;
-      max-width: 90%;
-      text-align: center;
-      pointer-events: none;
-    }
-    #startButton {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 15px 30px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background: #1a73e8;
-      color: #fff;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple AR Camera Feed</title>
+<style>
+  body, html {
+    margin:0;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+    background: #000;
+  }
+  video {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    z-index:0;
+  }
+  canvas {
+    position: absolute;
+    top:0;
+    left:0;
+    z-index:1;
+  }
+  #infoCard {
+    position: absolute;
+    bottom: 20px;
+    left:50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.7);
+    padding:10px 20px;
+    border-radius:8px;
+    color: #fff;
+    display: none;
+    text-align:center;
+    max-width:90%;
+    z-index:2;
+  }
+  #startButton {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding: 15px 30px;
+    font-size: 18px;
+    border:none;
+    border-radius:10px;
+    background:#1a73e8;
+    color:#fff;
+    cursor:pointer;
+    z-index:3;
+  }
+</style>
 </head>
 <body>
   <button id="startButton">Start AR</button>
+  <video id="cameraFeed" autoplay playsinline></video>
+  <canvas id="arCanvas"></canvas>
   <div id="infoCard"></div>
 
-  <!-- Three.js -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.min.js"></script>
-  <!-- Three.js AR.js support -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/webxr/ARButton.js"></script>
-  <!-- GSAP for smooth animations -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.16.1/dist/gsap.min.js"></script>
   <script src="script.js"></script>
 </body>
